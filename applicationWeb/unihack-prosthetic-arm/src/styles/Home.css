@@ -1,0 +1,36 @@
+.container{
+    width: 150rem;
+    height: 100rem;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
+
+.lockButton{
+    display: flex;
+    margin-top: 10%;
+    width: 6rem;
+    height: 6rem;
+}
+
+.buttonPreset{
+    position: relative;
+    margin-left: 95%;
+    margin-top: 15%;
+}
+
+.handStatus{
+    margin-left: 85%;
+    margin-top: -30%;
+
+}
+
+.presentationButton{
+    position: relative;
+    margin-top: 10%;
+    margin-left: 1.5%;
+}
+
+.logo{
+    margin-left: -2%;
+}

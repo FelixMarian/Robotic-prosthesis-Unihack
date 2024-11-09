@@ -26,6 +26,7 @@ function ButtonPreset() {
 
     return (
         <div className="btn-group">
+            <Button title="Connect" onClick={() => sendMessage("CONNECTED")} />
             <Button title="Fodoka" onClick={() => sendMessage("P1")} />
             <Button title="Are" onClick={() => sendMessage("P2")} />
             <Button title="Motorul" onClick={() => sendMessage("P3")} />

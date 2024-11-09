@@ -6,3 +6,11 @@
 ![](https://img.shields.io/badge/GPLv%203.0-FF3333)  
 ![.](https://img.shields.io/badge/Raspberry%20PI-884DA7)
 ![](https://img.shields.io/badge/Multi%20language-335BFF) ![](https://img.shields.io/badge/Cross%20platform-B833FF)
+
+
+
+
+### License
+**Copyright © 2007 Free Software Foundation.**
+
+Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.

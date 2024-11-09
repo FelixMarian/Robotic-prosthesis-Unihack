@@ -1,8 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 
-
 const app = express();
+const port = 5000;
+const net = require('net');
 
 app.use(cors());
 app.use(express.json());
@@ -12,16 +13,36 @@ app.get('/api', (req, res) => {
     res.json({ message: 'Hello from the backend!' });
 });
 
-app.post("/send-message", (req, res) => {
+// Function to send and receive data from Raspberry via TCP
+const sendTcpMessage = (message) => {
+    const client = new net.Socket();
+    client.connect(5000, '192.168.187.135', () => {
+        console.log('Conectat la Raspberry Pi');
+        client.write(message);
+    });
+
+    client.on('data', (data) => {
+        console.log('Mesaj primit de la serverul TCP:', data.toString());
+        client.destroy();
+    });
+
+    client.on('close', () => {
+        console.log('Conexiune închisă');
+    });
+
+    client.on('error', (error) => {
+        console.error('Eroare TCP:', error);
+    });
+};
+
+app.post('/send-message', (req, res) => {
     const { message } = req.body;
-
-    if (!message) {
-        return res.status(400).json({ error: "Mesajul este necesar" });
+    if (message) {
+        sendTcpMessage(message);
+        res.status(200).send('Mesaj trimis');
+    } else {
+        res.status(400).send('Mesajul este necesar');
     }
-
-    console.log("Mesaj primit pentru trimitere:", message);
-
-    res.json({ success: true, message: "Mesaj trimis cu succes!" });
 });
 
 const PORT = process.env.PORT || 5000;

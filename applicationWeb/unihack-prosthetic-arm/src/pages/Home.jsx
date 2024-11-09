@@ -4,11 +4,13 @@ import ButtonUnlocked from "../components/buttonsLock-Unlock/buttonUnlocked.jsx"
 import Button from "../components/button.jsx";
 import HandStatus from "../components/handStatus.jsx";
 import Logo from "../components/logo.jsx";
+import ArmRender from "../components/armRender.jsx";
 
 import {useState} from 'react';
 
 import "../styles/Home.css"
 import "../styles/HomeJumpingText.css"
+import presentation from "./Presentation.jsx";
 
 function Home(){
     const [lockedButton, setLockedButton] = useState(false);
@@ -18,7 +20,6 @@ function Home(){
     const toggleButton = () => {
         setLockedButton(!lockedButton);
     };
-
     const status = 0;
 
     return (
@@ -34,8 +35,10 @@ function Home(){
                         <ButtonUnlocked changeButton={toggleButton}/>
                     )}
                 </div>
+
                 <div className="presentationButton">
-                    <Button title={"Project presentation"}/>
+                        <a href="./Presentation"><Button title={"Project presentation"}/></a>
+
                 </div>
                 <div className="jumpingText">
                     <span>Aqualix Prosthetic Arm</span>
@@ -46,7 +49,11 @@ function Home(){
                 <div className="buttonPreset">
                     <ButtonPreset/>
                 </div>
-
+                <div className="ArmRender">
+                    <div style={{width: '50vw', height: '50vh'}}>
+                        <ArmRender modelUrl="public/test.glb"/>
+                    </div>
+                </div>
             </div>
         </>
     );

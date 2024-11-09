@@ -30,8 +30,8 @@
     left: auto;
     right: auto;
     opacity: 0;
-    width: 80%;
     height: 6rem;
+    width: 80%;
     align-content: center;
     color: #323237;
     display: block;
@@ -47,6 +47,7 @@
     opacity: 1;
     color: #ffffff;
     display: block;
+    width: 6rem;
     height: 6rem;
     padding: 0 30px;
     line-height: 40px;

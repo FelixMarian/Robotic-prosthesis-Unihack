@@ -1,0 +1,52 @@
+.hand-status-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 25%;
+    background-color: #3f2263;
+    border: 2px solid #4f2b80;
+    color: #ecf0f1;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+.hand-status-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #ecf0f1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.status {
+    font-size: 1rem;
+    color: #bdc3c7;
+}
+
+.status-text {
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.status-0 {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.status-1 {
+    background-color: #f39c12;
+    color: #fff;
+}
+
+.status-2 {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.status-text:hover {
+    transform: scale(1.1);
+}

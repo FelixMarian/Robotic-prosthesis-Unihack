@@ -1,0 +1,60 @@
+
+.btn-unlock {
+    opacity: 1;
+    width: 12rem;
+    height: 6rem;
+    outline: 0;
+    background: transparent;
+    color: #fff;
+    line-height: 40px;
+    position: relative;
+    text-align: center;
+    letter-spacing: 1px;
+    display: inline-block;
+    text-decoration: none;
+    font-family: 'Open Sans';
+    text-transform: uppercase;
+}
+
+
+.btn-unlock:hover:after {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+}
+.btn-unlock:hover:before {
+    opacity: 0;
+    transform: translateY(50%) rotateX(90deg);
+}
+.btn-unlock:after {
+    top: 10px;
+    left: auto;
+    right: auto;
+    opacity: 0;
+    height: 6rem;
+    width: 80%;
+    align-content: center;
+    color: #323237;
+    display: block;
+    transition: 0.5s;
+    position: absolute;
+    background: #fdc846;
+    content: attr(data-back);
+    transform: translateY(-50%) rotateX(90deg);
+}
+.btn-unlock:before {
+    top: 0;
+    left: 0;
+    opacity: 1;
+    color: #ffffff;
+    display: block;
+    width: 6rem;
+    height: 6rem;
+    padding: 0 30px;
+    line-height: 40px;
+    transition: 0.5s;
+    align-content: center;
+    position: relative;
+    background: #5301b6;
+    content: attr(data-front);
+    transform: translateY(0) rotateX(0);
+}

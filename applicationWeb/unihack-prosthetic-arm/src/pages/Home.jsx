@@ -26,7 +26,7 @@ function Home(){
         <>
             <div className="container">
                 <div className="logo">
-                    <Logo/>
+                    <Logo />
                 </div>
                 <div className="lockButton">
                     {lockedButton ? (

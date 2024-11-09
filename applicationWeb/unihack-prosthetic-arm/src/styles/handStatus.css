@@ -12,7 +12,7 @@
 }
 
 .hand-status-title {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: bold;
     margin-bottom: 20px;
     color: #ecf0f1;
@@ -21,7 +21,7 @@
 }
 
 .status {
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: #bdc3c7;
 }
 

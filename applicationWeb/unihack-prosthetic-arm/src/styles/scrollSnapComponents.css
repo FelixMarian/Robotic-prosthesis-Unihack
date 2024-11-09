@@ -1,0 +1,33 @@
+
+.scroll-container {
+    height: 100vh;
+    width: 100vw;
+    position:relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+
+}
+
+
+
+.scroll-section {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    scroll-snap-align: start;
+    text-align: center;
+}
+
+p{
+    padding-right: 7rem;
+}
+
+h1,h2,h3{
+    padding-left: 5rem;
+    padding-right: 8rem;
+}

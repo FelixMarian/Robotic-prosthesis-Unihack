@@ -1,8 +1,9 @@
+import ScrollSnapComponent from "../components/scrollSnapping.jsx";
 
 function Presentation(){
     return (
        <>
-       <h1>Da</h1>
+       <ScrollSnapComponent/>
        </>
     );
 }

@@ -2,12 +2,11 @@
 
 
 .jumpingText{
-    position: absolute;
-    top: 90%; left: 2%;
+    top: 0; left: 0;
     right: 0; bottom: 0;
-    height: 100vh; width: 100vw;
+    height: 10vh; width: 35vw;
     display: flex;
-    font-size: 3rem;
+    font-size: 3vw;
 }
 .jumpingText span{
     position: relative;

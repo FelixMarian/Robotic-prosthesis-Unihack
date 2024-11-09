@@ -5,6 +5,8 @@ const app = express();
 const port = 5000;
 const net = require('net');
 
+let connectionStatus = 0;
+
 app.use(cors());
 app.use(express.json());
 
@@ -13,11 +15,19 @@ app.get('/api', (req, res) => {
     res.json({ message: 'Hello from the backend!' });
 });
 
+
+// Get to see if the status has changed
+app.get('/api/status', (req, res) => {
+    res.json({ status: connectionStatus });
+});
+
+
 // Function to send and receive data from Raspberry via TCP
-const sendTcpMessage = (message) => {
+const sendTcpMessage = (message, onStautsChange) => {
     const client = new net.Socket();
     client.connect(5000, '192.168.187.135', () => {
         console.log('Conectat la Raspberry Pi');
+        connectionStatus=2;
         client.write(message);
     });
 

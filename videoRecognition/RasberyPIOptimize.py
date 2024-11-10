@@ -6,35 +6,6 @@ from adafruit_servokit import ServoKit
 import socket
 import threading
  
-kit = ServoKit(channels=16)
- 
-servos = {
-    "Thumb": kit.servo[2],
-    "Index": kit.servo[1],
-    "Middle": kit.servo[3],
-    "Ring": kit.servo[0],
-    #     "IndexRight": kit.servo[4],   # Additional servo for Index (15° to the right)
-    # "RingLeft": kit.servo[5],     # Additional servo for Ring (15° to the left)
-    # "ThumbRight": kit.servo[6],   # Additional servo for Thumb (15° to the right)
-    # "ThumbLeft": kit.servo[7],
- 
-    }
- 
-def lockServos():
-    global is_locked
-    global last_positions
-    print("Locking servos...")
-    is_locked = True
-    # Store current positions when locking
-    last_positions["Thumb"] = servos["Thumb"].angle
-    last_positions["Index"] = servos["Index"].angle
-    last_positions["Middle"] = servos["Middle"].angle
-    last_positions["Ring"] = servos["Ring"].angle
-    print(f"Locked at: {last_positions}")
-def unlockServos():
-    global is_locked
-    print("Unlocking servos...")
-    is_locked = False  
  
 # Function used for listening to new messages from website into a new thread
 def readData():
@@ -49,56 +20,12 @@ def readData():
         connection, client_address = server_socket.accept() 
         data = connection.recv(1024)
         print(f"Mesaj primit: {data.decode('utf-8')}") 
-        messageDec = data.decode('utf-8')
-        if messageDec == "P1":
-            servos["Thumb"].angle = 0  # Thumb extended (0 degrees)
-            servos["Index"].angle = 180  # Index curled (90 degrees)
-            servos["Middle"].angle = 180 # Middle curled (90 degrees)
-            servos["Ring"].angle = 180 
-        elif messageDec == "P2":
-            servos["Thumb"].angle = 180 # Thumb extended (0 degrees)
-            servos["Index"].angle = 0  # Index curled (90 degrees)
-            servos["Middle"].angle = 0  # Middle curled (90 degrees)
-            servos["Ring"].angle = 180   
-        elif messageDec == "P3":
-            servos["Thumb"].angle = 180 # Thumb extended (0 degrees)
-            servos["Index"].angle = 180  # Index curled (90 degrees)
-            servos["Middle"].angle = 180  # Middle curled (90 degrees)
-            servos["Ring"].angle = 180  
-        elif messageDec == "P4":
-            servos["Thumb"].angle = 0 # Thumb extended (0 degrees)
-            servos["Index"].angle = 0  # Index curled (90 degrees)
-            servos["Middle"].angle = 0  # Middle curled (90 degrees)
-            servos["Ring"].angle = 0  
-        elif messageDec == "LO":
-            lockServos()
-        elif messageDec == "UL":
-            unlockServos()
  
-is_locked = False
-last_positions = {
-    "Thumb": 0,
-    "Index": 0,
-    "Middle": 0,
-    "Ring": 0
-}
  
  
 def prostheticHand():
         # Initialize the ServoKit for 16-channel PCA9685
-    #kit = ServoKit(channels=16)
  
-    # Control servo on channels for each finger (example: channels 1-4 for thumb, index, middle, and ring)
-    #servos = {
-     #   "Thumb": kit.servo[2],
-      #  "Index": kit.servo[1],
-       # "Middle": kit.servo[3],
-        #"Ring": kit.servo[0],
-    #     "IndexRight": kit.servo[4],   # Additional servo for Index (15° to the right)
-    # "RingLeft": kit.servo[5],     # Additional servo for Ring (15° to the left)
-    # "ThumbRight": kit.servo[6],   # Additional servo for Thumb (15° to the right)
-    # "ThumbLeft": kit.servo[7],
-    #}
  
     # Initialize MediaPipe Hands and Drawing modules
     mp_hands = mp.solutions.hands
@@ -141,9 +68,6 @@ def prostheticHand():
  
         # Set initial servo positions (all start at 180 degrees)
         for finger_name in servos:
-            servos[finger_name].angle = 0
- 
-        last_servo_angles = {finger: 0 for finger in servos}  # Store initial angles
  
         while webcam.isOpened():
  
@@ -198,8 +122,6 @@ def prostheticHand():
                     # Process each finger for position and bend state
                     finger_info = []
                     for finger_name, points in finger_landmarks.items():
-                        if is_locked:  # Don't update servos if locked
-                                continue
  
                         mcp = landmarks[points[0]]
                         pip = landmarks[points[1]]
@@ -216,9 +138,7 @@ def prostheticHand():
  
                         # Control servo based on the finger bend state
                         if bend_state == "Bent":  # Finger is bent
-                            servo_position = 180  # Move to 90 degrees (Down)
-                        else:  # Finger is straight
-                            servo_position = 0 # Move to 180 degrees (Up)
+ 
  
                         # Check if the time between servo updates is sufficient
                         current_time = time.time()

@@ -29,8 +29,8 @@ function ButtonPreset() {
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            sendMessage("");
-        }, 1000); // 1000 ms timer
+            sendMessage("t");
+        }, 3000); // 1000 ms timer
 
         // Curățăm intervalul la demontarea componentului
         return () => clearInterval(intervalId);

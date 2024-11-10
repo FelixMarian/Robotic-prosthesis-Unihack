@@ -6,11 +6,13 @@ from adafruit_servokit import ServoKit
 import socket
 import threading
  
+ 
 # Function used for listening to new messages from website into a new thread
 def readData():
     # Initiate the socket to listen on port 5000
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind(('0.0.0.0',5000))
+ 
  
     while True:
         # Read new messages via TCP 
@@ -20,17 +22,10 @@ def readData():
         print(f"Mesaj primit: {data.decode('utf-8')}") 
  
  
+ 
 def prostheticHand():
         # Initialize the ServoKit for 16-channel PCA9685
-    kit = ServoKit(channels=16)
  
-    # Control servo on channels for each finger (example: channels 1-4 for thumb, index, middle, and ring)
-    servos = {
-        "Thumb": kit.servo[2],
-        "Index": kit.servo[1],
-        "Middle": kit.servo[3],
-        "Ring": kit.servo[0],
-    }
  
     # Initialize MediaPipe Hands and Drawing modules
     mp_hands = mp.solutions.hands
@@ -73,9 +68,6 @@ def prostheticHand():
  
         # Set initial servo positions (all start at 180 degrees)
         for finger_name in servos:
-            servos[finger_name].angle = 180
- 
-        last_servo_angles = {finger: 180 for finger in servos}  # Store initial angles
  
         while webcam.isOpened():
  
@@ -130,6 +122,7 @@ def prostheticHand():
                     # Process each finger for position and bend state
                     finger_info = []
                     for finger_name, points in finger_landmarks.items():
+ 
                         mcp = landmarks[points[0]]
                         pip = landmarks[points[1]]
                         dip = landmarks[points[2]]
@@ -145,9 +138,7 @@ def prostheticHand():
  
                         # Control servo based on the finger bend state
                         if bend_state == "Bent":  # Finger is bent
-                            servo_position = 90  # Move to 90 degrees (Down)
-                        else:  # Finger is straight
-                            servo_position = 180  # Move to 180 degrees (Up)
+ 
  
                         # Check if the time between servo updates is sufficient
                         current_time = time.time()

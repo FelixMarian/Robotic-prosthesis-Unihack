@@ -25,7 +25,7 @@ app.get('/api/status', (req, res) => {
 // Function to send and receive data from Raspberry via TCP
 const sendTcpMessage = (message, onStautsChange) => {
     const client = new net.Socket();
-    client.connect(5000, '192.168.187.135', () => {
+    client.connect(5000, '192.168.121.135', () => {
         console.log('Conectat la Raspberry Pi');
         connectionStatus=2;
         client.write(message);
@@ -42,6 +42,7 @@ const sendTcpMessage = (message, onStautsChange) => {
 
     client.on('error', (error) => {
         console.error('Eroare TCP:', error);
+        connectionStatus=0;
     });
 };
 

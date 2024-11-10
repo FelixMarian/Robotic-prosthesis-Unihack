@@ -32,7 +32,7 @@
 
 .buttonPreset {
     position: absolute;
-    margin-top: 13%;
+    margin-top: 15%;
     margin-left: 85%;
 }
 
@@ -51,8 +51,8 @@
 
 .ArmRender {
     width: 50vw;
-    margin: auto;
-
+    margin-left: 25vw;
+    margin-top: 30vh;
 }
 
 .jumpingText {

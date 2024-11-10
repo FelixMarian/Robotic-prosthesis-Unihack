@@ -62,7 +62,7 @@ function Home() {
                     <ButtonPreset />
                 </div>
                 <div className="ArmRender">
-                    <div style={{ width: '50vw', height: '50vh' }}>
+                    <div style={{ width: '50vw', height: '60vh' }}>
                         <ArmRender modelUrl="public/Handv1.glb" />
                     </div>
                 </div>

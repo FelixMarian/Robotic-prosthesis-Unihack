@@ -11,7 +11,7 @@
 **A robotic arm designed to assist individuals with upper limb loss, offering functional movement and control through a web application.**
 
 - Real-time gesture replication from a healthy hand.
-- Bluetooth integration for remote control via a web app.
+- Wi-fi integration for remote control via a web app.
 - Customizable functionality for different user needs.
   
 ### Assistive Robotic Arm for Medical Use
